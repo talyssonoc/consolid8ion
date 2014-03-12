@@ -35,6 +35,32 @@
 
 __NOTE__: you must still install the engines you wish to use, add them to your package.json dependencies.
 
+## Requiring Consolidate.js
+
+You can just require it, calling as a function without parameters
+
+```js
+var cons = require('consolidate')();
+cons.swig('views/page.html', { user: 'tobi' }, function(err, html) {
+  if (err) throw err;
+  console.log(html);
+});
+```
+
+Or pass as parameter an object with some pre-cached requires
+
+```js
+var requires = {
+    swig: require('swig')
+};
+
+var cons = require('consolidate')(requires);
+cons.swig('views/page.html', { user: 'tobi' }, function(err, html) {
+  if (err) throw err;
+  console.log(html);
+});
+```
+
 ## API
 
   All templates supported by this library may be rendered using the signature `(path[, locals], callback)` as shown below, which happens to be the signature that Express 3.x supports so any of these engines may be used within Express.
@@ -42,7 +68,7 @@ __NOTE__: you must still install the engines you wish to use, add them to your p
 __NOTE__: All this example code uses cons.swig for the swig template engine. Replace swig with whatever templating you are using. For example, use cons.hogan for hogan.js, cons.jade for jade, etc. `console.log(cons)` for the full list of identifiers.
 
 ```js
-var cons = require('consolidate');
+var cons = require('consolidate')();
 cons.swig('views/page.html', { user: 'tobi' }, function(err, html){
   if (err) throw err;
   console.log(html);
@@ -52,7 +78,7 @@ cons.swig('views/page.html', { user: 'tobi' }, function(err, html){
   Or without options / local variables:
 
 ```js
-var cons = require('consolidate');
+var cons = require('consolidate')();
 cons.swig('views/page.html', function(err, html){
   if (err) throw err;
   console.log(html);
@@ -62,7 +88,7 @@ cons.swig('views/page.html', function(err, html){
   To dynamically pass the engine, simply use the subscript operator and a variable:
 
 ```js
-var cons = require('consolidate')
+var cons = require('consolidate')()
   , name = 'swig';
 
 cons[name]('views/page.html', { user: 'tobi' }, function(err, html){
@@ -76,7 +102,7 @@ cons[name]('views/page.html', { user: 'tobi' }, function(err, html){
  To enable caching simply pass `{ cache: true }`. Engines _may_ use this option to cache things reading the file contents, compiled `Function`s etc. Engines which do _not_ support this may simply ignore it. All engines that consolidate.js implements I/O for will cache the file contents, ideal for production environments.
 
 ```js
-var cons = require('consolidate');
+var cons = require('consolidate')();
 cons.swig('views/page.html', { user: 'tobi' }, function(err, html){
   if (err) throw err;
   console.log(html);
@@ -87,7 +113,7 @@ cons.swig('views/page.html', { user: 'tobi' }, function(err, html){
 
 ```js
 var express = require('express')
-  , cons = require('consolidate')
+  , cons = require('consolidate')()
   , app = express();
 
 // assign the swig engine to .html files
