@@ -1,0 +1,1 @@
+<span>{{#i18n}}Hello{{/i18n}}</span><span>{{#i18n}}World{{/i18n}}</span>

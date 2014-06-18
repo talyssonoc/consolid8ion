@@ -1,0 +1,2 @@
+%span= @i18n('Hello')
+%span= @i18n('World')

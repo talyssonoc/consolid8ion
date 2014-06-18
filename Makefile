@@ -1,9 +1,7 @@
-
 REPORTER = spec
+BIN = ./node_modules/.bin
 
 test:
-	@./node_modules/.bin/mocha \
-	  --slow 30 \
-	  --reporter $(REPORTER)
+		$(BIN)/mocha --reporter $(REPORTER) --ui bdd ./test/*
 
 .PHONY: test
