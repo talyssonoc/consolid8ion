@@ -6,6 +6,13 @@
     "name": "talyssonoc",
     "email": "talyssonoc@gmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/talyssonoc/consolid8ion.git"
+  },
+  "bugs": {
+    "url": "https://github.com/talyssonoc/consolid8ion/issues"
+  },
   "main": "lib/index.js",
   "scripts": {
     "test": "grunt test"
